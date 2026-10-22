@@ -7,8 +7,8 @@ export default function App() {
         <h1 className="mb-2 text-3xl text-green-800  font-bold  ">Todo-List</h1>
         <p className="mb-6 text-slate-800">Organize your day, One at a time.</p>
         <div className="flex gap-2 " >
-          <input className="min-w-0 flex-1 border rounded-lg  border-green-800 px-4 py-3 outline-none focus:border-green-500 focus:ring-2 focus:ring-green-300  " type="text" />
-          <button className="bg-green-500 w-10 ">Add</button>
+          <input className="min-w-0 flex-1 rounded-lg border  border-green-800 px-4 py-3 outline-none focus:border-green-500 focus:ring-2 focus:ring-green-300  " type="text" />
+          <button className="rounded-lg bg-green-500 px-4 py-3 text-white font-bold hover:bg-green-600 active:bg-green-800  ">Add</button>
         </div>
         <ul>
           <li>
