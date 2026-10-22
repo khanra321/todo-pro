@@ -4,11 +4,11 @@ export default function App() {
   return (
     <main className="min-h-screen bg-slate-100 px-4 py-16" >
       <section className="mx-auto max-w-xl bg-white rounded-3xl shadow-lg p-6 sm:p-8 ">
-        <h1>Todo-List</h1>
-        <p>Organize your day, One at a time.</p>
-        <div>
-          <input type="text" />
-          <button>Add</button>
+        <h1 className="mb-2 text-3xl text-green-800  font-bold  ">Todo-List</h1>
+        <p className="mb-6 text-slate-800">Organize your day, One at a time.</p>
+        <div className="flex gap-2 " >
+          <input className="min-w-0 flex-1 border rounded-lg  border-green-800 px-4 py-3 outline-none focus:border-green-500 focus:ring-2 focus:ring-green-300  " type="text" />
+          <button className="bg-green-500 w-10 ">Add</button>
         </div>
         <ul>
           <li>
