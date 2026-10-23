@@ -10,8 +10,8 @@ export default function App() {
           <input className="min-w-0 flex-1 rounded-lg border  border-green-800 px-4 py-3 outline-none focus:border-green-500 focus:ring-2 focus:ring-green-300  " type="text" />
           <button className="rounded-lg bg-green-500 px-4 py-3 text-white font-bold hover:bg-green-600 active:bg-green-800  ">Add</button>
         </div>
-        <ul>
-          <li>
+        <ul className="mt-6 space-3 ">
+          <li className="flex items-center gap-3 rounded-lg border border-slate-200 p-3 ">
             <input type="chakbox" />
             <span></span>
             <button>delate</button>
