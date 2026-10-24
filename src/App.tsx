@@ -7,18 +7,18 @@ export default function App() {
         <h1 className="mb-2 text-3xl text-green-800  font-bold  ">Todo-List</h1>
         <p className="mb-6 text-slate-800">Organize your day, One at a time.</p>
         <div className="flex gap-2 " >
-          <input className="min-w-0 flex-1 rounded-lg border  border-green-800 px-4 py-3 outline-none focus:border-green-500 focus:ring-2 focus:ring-green-300  " type="text" />
+          <input className="min-w-0 flex-1 rounded-lg border  border-green-800 px-4 py-2 outline-none focus:border-green-500 focus:ring-2 focus:ring-green-300  " type="text" />
           <button className="rounded-lg bg-green-500 px-4 py-3 text-white font-bold hover:bg-green-600 active:bg-green-800  ">Add</button>
         </div>
         <ul className="mt-6 space-y-3 ">
           <li className="flex items-center gap-3 rounded-lg border border-slate-200 p-3 ">
             <input type="checkbox" className="size-5 accent-green-600 hover:accent-green-500" />
-            <span></span>
+            <span className="min-w-0 flex-1 break-words"> Task section</span>
             <button className=" shrink-0 rounded-md px-2 py-1 text-sm font-medium ml-auto text-red-500 hover:bg-red-500 hover:text-white">delate</button>
           </li>
         </ul>
-        <p>No task add yet. Create your first task.</p>
-        <p>Total tasks:   | Completed tasks: </p>
+        <p className="mt-6 text-center text-slate-800">No task add yet. Create your first task.</p>
+        <p className="mt-4 text-slate-900">Total tasks:   | Completed tasks: </p>
       </section>
     </main>
   )
