@@ -29,6 +29,11 @@ export default function App() {
       )
     );
   }
+  function removeTodo( id: number){
+    setTodos(
+      todos.filter((todo) => todo.id !== id))
+
+  }
   return (
     <main className="min-h-screen bg-slate-100 px-4 py-16" >
       <section className="mx-auto max-w-xl bg-white rounded-3xl shadow-lg p-6 sm:p-8 ">
@@ -70,7 +75,12 @@ export default function App() {
               >
                 {todo.title}
               </span>
-              <button className=" shrink-0 rounded-md px-2 py-1 text-sm font-medium ml-auto text-red-500 hover:bg-red-500 hover:text-white">delate</button>
+              <button
+               onClick = {() => removeTodo(todo.id)}
+               className=" shrink-0 rounded-md px-2 py-1 text-sm font-medium ml-auto text-red-500 hover:bg-red-500 hover:text-white"
+              >
+                delate
+              </button>
             </li>
           ))}
         </ul>
