@@ -1,8 +1,7 @@
-
 import {useState} from 'react';
 import type {Todo} from './features/todos/types/todo.types.ts';
 import { TodoItem } from "./features/todos/components/TodoItem";
-
+import { TodoList } from "./features/todos/components/TodoList";
 
 export default function App() {
   const [task, setTask] = useState<string>("");
@@ -58,16 +57,11 @@ export default function App() {
             Add
           </button>
         </div>
-        <ul className="mt-6 space-y-3 ">
-          {todos.map((todo) =>(
-            <TodoItem
-              key = {todo.id}
-              todo = {todo}
-              onToggle = {toggleChecked}
-              onDelete={removeTodo}
-              />
-          ))}
-        </ul>
+        <TodoList
+          todos={todos}
+          onToggle={toggleChecked}
+          onDelete={removeTodo}
+        />
         {todos.length === 0 && (
           <p className="mt-6 text-center text-slate-800">No task add yet. Create your first task.</p>
         )}
