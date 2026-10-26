@@ -9,6 +9,8 @@ type Todo = {
 export default function App() {
   const [task, setTask] = useState<string>("");
   const [todos, setTodos] = useState<Todo[]>([]);
+  const lenTodo = todos.length;
+  
   function addTodo(){
     if (task.trim() === "") 
       return;
@@ -21,6 +23,7 @@ export default function App() {
     setTask("")
   }
   function toggleChaked(id: number){
+    
     setTodos(
       todos.map((todo) =>
        todo.id === id 
@@ -28,12 +31,14 @@ export default function App() {
         : todo
       )
     );
+    
   }
   function removeTodo( id: number){
     setTodos(
       todos.filter((todo) => todo.id !== id))
-
+    
   }
+  
   return (
     <main className="min-h-screen bg-slate-100 px-4 py-16" >
       <section className="mx-auto max-w-xl bg-white rounded-3xl shadow-lg p-6 sm:p-8 ">
@@ -70,7 +75,7 @@ export default function App() {
                className={`min-w-0 flex-1 break-words ${
                 todo.completed
                  ? "text-slate-400 line-through"
-                 :"text-state-700"
+                 :"text-slate-700"
                }`}
               >
                 {todo.title}
@@ -87,7 +92,7 @@ export default function App() {
         {todos.length === 0 && (
           <p className="mt-6 text-center text-slate-800">No task add yet. Create your first task.</p>
         )}
-        <p className="mt-4 text-slate-900">Total tasks:   | Completed tasks: </p>
+        <p className="mt-4 text-slate-900">Total tasks: {lenTodo}   | Completed tasks:{todos.filter((todo) => todo.completed).length} </p>
       </section>
     </main>
   )
