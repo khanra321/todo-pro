@@ -19,9 +19,15 @@ export default function App() {
     };
     setTodos([...todos, newTodo]);
     setTask("")
-
-
-
+  }
+  function toggleChaked(id: number){
+    setTodos(
+      todos.map((todo) =>
+       todo.id === id 
+        ? {...todo, completed: !todo.completed}
+        : todo
+      )
+    );
   }
   return (
     <main className="min-h-screen bg-slate-100 px-4 py-16" >
@@ -49,13 +55,28 @@ export default function App() {
             <li
              key={todo.id}
              className="flex items-center gap-3 rounded-lg border border-slate-200 p-3 ">
-              <input type="checkbox" className="size-5 accent-green-600 hover:accent-green-500" />
-              <span className="min-w-0 flex-1 break-words">{todo.title}</span>
+              <input
+               type="checkbox"
+               checked={todo.completed}
+               onChange={() => toggleChaked(todo.id)}
+               className="size-5 accent-green-600 hover:accent-green-500" />
+
+              <span
+               className={`min-w-0 flex-1 break-words ${
+                todo.completed
+                 ? "text-slate-400 line-through"
+                 :"text-state-700"
+               }`}
+              >
+                {todo.title}
+              </span>
               <button className=" shrink-0 rounded-md px-2 py-1 text-sm font-medium ml-auto text-red-500 hover:bg-red-500 hover:text-white">delate</button>
             </li>
           ))}
         </ul>
-        <p className="mt-6 text-center text-slate-800">No task add yet. Create your first task.</p>
+        {todos.length === 0 && (
+          <p className="mt-6 text-center text-slate-800">No task add yet. Create your first task.</p>
+        )}
         <p className="mt-4 text-slate-900">Total tasks:   | Completed tasks: </p>
       </section>
     </main>
