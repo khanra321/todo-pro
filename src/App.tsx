@@ -1,7 +1,7 @@
 
 import {useState} from 'react';
-import type {Todo} from './features/tosos/types/todo.types.ts';
-import { TodoItem } from "./features/tosos/components/TodoItem";
+import type {Todo} from './features/todos/types/todo.types.ts';
+import { TodoItem } from "./features/todos/components/TodoItem";
 
 
 export default function App() {
