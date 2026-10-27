@@ -1,7 +1,7 @@
 import {useState} from 'react';
 import type {Todo} from './features/todos/types/todo.types.ts';
-import { TodoItem } from "./features/todos/components/TodoItem";
 import { TodoList } from "./features/todos/components/TodoList";
+import { TodoForm } from "./features/todos/components/TodoForm";
 
 export default function App() {
   const [task, setTask] = useState<string>("");
@@ -41,22 +41,11 @@ export default function App() {
       <section className="mx-auto max-w-xl bg-white rounded-3xl shadow-lg p-6 sm:p-8 ">
         <h1 className="mb-2 text-3xl text-green-800  font-bold  ">Todo-List</h1>
         <p className="mb-6 text-slate-800">Organize your day, One at a time.</p>
-        <div className="flex gap-2 " >
-          <input 
-           type="text"
-           value={task}
-           onChange={(event)=> setTask(event.target.value)}
-           placeholder="Enter a new task .."
-           className="min-w-0 flex-1 rounded-lg border  border-green-800 px-4 py-2 outline-none focus:border-green-500 focus:ring-2 focus:ring-green-300  "
-          />
-          <button
-           onClick={addTodo}
-           className="rounded-lg bg-green-500 px-4 py-3 text-white font-bold hover:bg-green-600 active:bg-green-800  "
-           
-          >
-            Add
-          </button>
-        </div>
+        <TodoForm
+          task={task}
+          onTaskChange={setTask}
+          onAdd={addTodo}
+        />
         <TodoList
           todos={todos}
           onToggle={toggleChecked}
