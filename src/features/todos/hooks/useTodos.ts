@@ -1,10 +1,25 @@
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import type { Todo } from "../types/todo.types";
+
+const STORAGE_KEY = "todo-list";
 
 export function useTodos() {
   const [task, setTask] = useState<string>("");
-  const [todos, setTodos] = useState<Todo[]>([]);
+
+  const [todos, setTodos] = useState<Todo[]>(() => {
+    try {
+      const savedTodos = localStorage.getItem(STORAGE_KEY);
+
+      return savedTodos ? JSON.parse(savedTodos) as Todo[] : [];
+    } catch {
+      return [];
+    }
+  });
+
+  useEffect(() => {
+    localStorage.setItem(STORAGE_KEY, JSON.stringify(todos));
+  }, [todos]);
 
   function addTodo() {
     if (task.trim() === "") return;
@@ -36,6 +51,7 @@ export function useTodos() {
   }
 
   const lenTodo = todos.length;
+
   const completedCount = todos.filter(
     (todo) => todo.completed
   ).length;
