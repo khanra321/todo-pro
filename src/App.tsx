@@ -2,6 +2,7 @@ import {useState} from 'react';
 import type {Todo} from './features/todos/types/todo.types.ts';
 import { TodoList } from "./features/todos/components/TodoList";
 import { TodoForm } from "./features/todos/components/TodoForm";
+import { TodoStats } from "./features/todos/components/TodoStats";
 
 export default function App() {
   const [task, setTask] = useState<string>("");
@@ -54,7 +55,10 @@ export default function App() {
         {todos.length === 0 && (
           <p className="mt-6 text-center text-slate-800">No task add yet. Create your first task.</p>
         )}
-        <p className="mt-4 text-slate-900">Total tasks: {lenTodo}   | Completed tasks:{todos.filter((todo) => todo.completed).length} </p>
+        <TodoStats
+          total={lenTodo}
+          completed={todos.filter((todo) => todo.completed).length}
+        />
       </section>
     </main>
   )
