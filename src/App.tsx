@@ -1,41 +1,21 @@
-import {useState} from 'react';
-import type {Todo} from './features/todos/types/todo.types.ts';
+
+
+import { useTodos } from "./features/todos/hooks/useTodos";
 import { TodoList } from "./features/todos/components/TodoList";
 import { TodoForm } from "./features/todos/components/TodoForm";
 import { TodoStats } from "./features/todos/components/TodoStats";
 
 export default function App() {
-  const [task, setTask] = useState<string>("");
-  const [todos, setTodos] = useState<Todo[]>([]);
-  const lenTodo = todos.length;
-  
-  function addTodo(){
-    if (task.trim() === "") 
-      return;
-    const newTodo: Todo = {
-      id: Date.now(),
-      title: task.trim(),
-      completed: false, 
-    };
-    setTodos([...todos, newTodo]);
-    setTask("")
-  }
-  function toggleChecked(id: number){
-    
-    setTodos(
-      todos.map((todo) =>
-       todo.id === id 
-        ? {...todo, completed: !todo.completed}
-        : todo
-      )
-    );
-    
-  }
-  function removeTodo( id: number){
-    setTodos(
-      todos.filter((todo) => todo.id !== id))
-    
-  }
+  const {
+    task,
+    setTask,
+    todos,
+    addTodo,
+    toggleChecked,
+    removeTodo,
+    lenTodo,
+    completedCount,
+  } = useTodos();
   
   return (
     <main className="min-h-screen bg-slate-100 px-4 py-16" >
@@ -57,7 +37,7 @@ export default function App() {
         )}
         <TodoStats
           total={lenTodo}
-          completed={todos.filter((todo) => todo.completed).length}
+          completed={completedCount}
         />
       </section>
     </main>
