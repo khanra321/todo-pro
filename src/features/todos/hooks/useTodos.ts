@@ -56,6 +56,16 @@ export function useTodos() {
     (todo) => todo.completed
   ).length;
 
+  function editTodo (id: number, newTitle: string){
+    setTodos((prevTodo) =>
+      prevTodo.map((todo) =>
+        todo.id === id
+          ? {...todo, title: newTitle}
+          :todo
+      )
+    );
+  }
+
   return {
     task,
     setTask,
@@ -65,5 +75,6 @@ export function useTodos() {
     removeTodo,
     lenTodo,
     completedCount,
+    editTodo,
   };
 }

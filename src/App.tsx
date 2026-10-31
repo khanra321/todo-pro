@@ -13,6 +13,7 @@ export default function App() {
     removeTodo,
     lenTodo,
     completedCount,
+    editTodo,
   } = useTodos();
   
   return (
@@ -28,6 +29,7 @@ export default function App() {
         <TodoList
           todos={todos}
           onToggle={toggleChecked}
+          onEdit={editTodo}
           onDelete={removeTodo}
         />
         {todos.length === 0 && (
