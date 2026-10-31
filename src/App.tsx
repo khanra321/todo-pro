@@ -22,8 +22,8 @@ export default function App() {
   return (
     <main className="min-h-screen bg-slate-100 px-4 py-16" >
       <section className="mx-auto max-w-xl bg-white rounded-3xl shadow-lg p-6 sm:p-8 ">
-        <h1 className="mb-2 text-3xl text-green-800  font-bold  ">Todo-List</h1>
-        <p className="mb-6 text-slate-800">Organize your day, One at a time.</p>
+        <h1 className="text-3xl font-bold text-green-600 ">Todos-List</h1>
+        <p className=" mt-6 mb-6 text-slate-800">Organize your day, One at a time.</p>
         <TodoForm
           task={task}
           onTaskChange={setTask}
