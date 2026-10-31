@@ -2,7 +2,7 @@ import { useTodos } from "./features/todos/hooks/useTodos";
 import { TodoList } from "./features/todos/components/TodoList";
 import { TodoForm } from "./features/todos/components/TodoForm";
 import { TodoStats } from "./features/todos/components/TodoStats";
-
+import { TodoFilter } from "./features/todos/components/TodoFilter";
 export default function App() {
   const {
     task,
@@ -14,6 +14,9 @@ export default function App() {
     lenTodo,
     completedCount,
     editTodo,
+    filter,
+    setFilter,
+    filteredTodos,
   } = useTodos();
   
   return (
@@ -26,11 +29,15 @@ export default function App() {
           onTaskChange={setTask}
           onAdd={addTodo}
         />
+        <TodoFilter
+          filter={filter}
+          onFilterChange={setFilter}
+        />
         <TodoList
-          todos={todos}
+          todos={filteredTodos}
           onToggle={toggleChecked}
-          onEdit={editTodo}
           onDelete={removeTodo}
+          onEdit={editTodo}
         />
         {todos.length === 0 && (
           <p className="mt-6 text-center text-slate-800">No task add yet. Create your first task.</p>

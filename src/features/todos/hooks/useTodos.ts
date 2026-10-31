@@ -16,6 +16,9 @@ export function useTodos() {
       return [];
     }
   });
+  const [filter, setFilter] = useState<
+  "all" | "active" | "completed"
+>("all");
 
   useEffect(() => {
     localStorage.setItem(STORAGE_KEY, JSON.stringify(todos));
@@ -56,6 +59,18 @@ export function useTodos() {
     (todo) => todo.completed
   ).length;
 
+  const filteredTodos = todos.filter((todo) => {
+    if (filter === "active") {
+      return !todo.completed;
+    }
+
+    if (filter === "completed") {
+      return todo.completed;
+    }
+
+    return true;
+  });
+
   function editTodo (id: number, newTitle: string){
     setTodos((prevTodo) =>
       prevTodo.map((todo) =>
@@ -76,5 +91,8 @@ export function useTodos() {
     lenTodo,
     completedCount,
     editTodo,
+    filter,
+    setFilter,
+    filteredTodos,
   };
 }
