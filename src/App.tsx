@@ -39,8 +39,16 @@ export default function App() {
           onDelete={removeTodo}
           onEdit={editTodo}
         />
-        {todos.length === 0 && (
-          <p className="mt-6 text-center text-slate-800">No task add yet. Create your first task.</p>
+        {filteredTodos.length === 0 && (
+          <p className="mt-6 text-center text-slate-400">
+            {todos.length === 0
+              ? "No task added yet. Create your first task."
+              : filter === "active"
+                ? "No active tasks."
+                : filter === "completed"
+                  ? "No completed tasks."
+                  : "No tasks found."}
+          </p>
         )}
         <TodoStats
           total={lenTodo}
