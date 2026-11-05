@@ -16,9 +16,14 @@ export function useTodos() {
       return [];
     }
   });
+
+  const [search, setSearch] = useState("");
+
   const [filter, setFilter] = useState<
   "all" | "active" | "completed"
 >("all");
+
+
 
   useEffect(() => {
     localStorage.setItem(STORAGE_KEY, JSON.stringify(todos));
@@ -60,15 +65,16 @@ export function useTodos() {
   ).length;
 
   const filteredTodos = todos.filter((todo) => {
-    if (filter === "active") {
-      return !todo.completed;
-    }
+    const matchesSearch = todo.title
+      .toLowerCase()
+      .includes(search.trim().toLowerCase());
+    const matchesFilter = 
 
-    if (filter === "completed") {
-      return todo.completed;
-    }
+      filter === "all" ||
+      (filter === "active" && !todo.completed) ||
+      (filter === "completed" && todo.completed);
 
-    return true;
+    return matchesSearch && matchesFilter;
   });
 
   function editTodo (id: number, newTitle: string){
@@ -94,6 +100,8 @@ export function useTodos() {
     filter,
     setFilter,
     filteredTodos,
+    search,
+    setSearch,
   };
 }
  

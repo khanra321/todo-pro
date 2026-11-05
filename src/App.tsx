@@ -3,6 +3,9 @@ import { TodoList } from "./features/todos/components/TodoList";
 import { TodoForm } from "./features/todos/components/TodoForm";
 import { TodoStats } from "./features/todos/components/TodoStats";
 import { TodoFilter } from "./features/todos/components/TodoFilter";
+import { TodoSearch } from "./features/todos/components/TodoSearch";
+
+
 export default function App() {
   const {
     task,
@@ -17,8 +20,10 @@ export default function App() {
     filter,
     setFilter,
     filteredTodos,
+    search,
+    setSearch,
   } = useTodos();
-  
+
   return (
     <main className="min-h-screen bg-slate-100 px-4 py-16" >
       <section className="mx-auto max-w-xl bg-white rounded-3xl shadow-lg p-6 sm:p-8 ">
@@ -29,10 +34,17 @@ export default function App() {
           onTaskChange={setTask}
           onAdd={addTodo}
         />
-        <TodoFilter
-          filter={filter}
-          onFilterChange={setFilter}
-        />
+        <div className="  flex justify-between ">
+          <TodoFilter
+            filter={filter}
+            onFilterChange={setFilter}
+
+          />
+          <TodoSearch
+            search={search}
+            onSearchChange={setSearch}
+          />
+        </div>
         <TodoList
           todos={filteredTodos}
           onToggle={toggleChecked}
@@ -45,9 +57,8 @@ export default function App() {
               ? "No task added yet. Create your first task."
               : filter === "active"
                 ? "No active tasks."
-                : filter === "completed"
-                  ? "No completed tasks."
-                  : "No tasks found."}
+                : "No completed tasks."
+            }
           </p>
         )}
         <TodoStats
