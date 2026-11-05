@@ -56,8 +56,10 @@ export default function App() {
             {todos.length === 0
               ? "No task added yet. Create your first task."
               : filter === "active"
-                ? "No active tasks."
-                : "No completed tasks."
+                ? "Active tasks not found."
+                : filter === "completed"
+                  ? "Completed tasks not found."
+                  : "Task not match."
             }
           </p>
         )}
