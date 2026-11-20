@@ -16,7 +16,7 @@ export function TodoForm({
         value={task}
         onChange={(e) => onTaskChange(e.target.value)}
         placeholder="Enter a task..."
-        className="min-w-0 flex-1 rounded-lg border  border-green-800 px-4 py-2 outline-none focus:border-green-500 focus:ring-2 focus:ring-green-300"
+        className="min-w-0 flex-1 rounded-lg border border-green-800 bg-white px-4 py-2 text-slate-900 outline-none placeholder:text-slate-400 focus:border-green-500 focus:ring-1 focus:ring-green-300 dark:border-green-600 dark:bg-slate-800 dark:text-white dark:placeholder:text-slate-400 dark:focus:border-green-400"
       />
 
       <button
