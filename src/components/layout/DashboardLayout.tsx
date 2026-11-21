@@ -1,3 +1,5 @@
+
+import { useState } from "react";
 import type { ReactNode } from "react";
 
 import { Header } from "./Header";
@@ -19,33 +21,66 @@ export function DashboardLayout({
   activePage,
   onNavigate,
 }: DashboardLayoutProps) {
+  const [sidebarCollapsed, setSidebarCollapsed] = useState(false);
+  const [mobileSidebarOpen, setMobileSidebarOpen] = useState(false);
+
   return (
-    <div className="flex min-h-screen flex-col bg-slate-50 dark:bg-slate-950">
+    <div className="flex h-dvh min-h-0 flex-col overflow-hidden bg-slate-200 dark:bg-slate-950">
 
       {/* Header */}
       <Header
         theme={theme}
         onThemeToggle={onThemeToggle}
+        onSidebarToggle={() =>
+          setSidebarCollapsed((prev) => !prev)
+        }
+        onMobileMenuToggle={() =>
+          setMobileSidebarOpen((prev) => !prev)
+        }
       />
 
       {/* Main Layout */}
-      <div className="flex flex-1">
+      <div className="relative flex min-h-0 flex-1 overflow-hidden">
+
+        {/* Mobile Backdrop */}
+        {mobileSidebarOpen && (
+          <button
+            type="button"
+            aria-label="Close sidebar"
+            onClick={() => setMobileSidebarOpen(false)}
+            className="absolute inset-0 z-30 bg-black/40 md:hidden"
+          />
+        )}
 
         {/* Sidebar */}
         <Sidebar
           activePage={activePage}
-          onNavigate={onNavigate}
+          onNavigate={(page) => {
+            onNavigate(page);
+            setMobileSidebarOpen(false);
+          }}
+          collapsed={sidebarCollapsed}
+          mobileOpen={mobileSidebarOpen}
+          onClose={() => setMobileSidebarOpen(false)}
         />
 
         {/* Main Content */}
-        <main className="min-w-0 flex-1 p-6">
-          {children}
+        <main className="min-h-0 min-w-0 flex-1 overflow-y-auto ">
+          <div className="p-3 sm:p-6">
+            {children}
+          </div>
+          
+
+          {/* Footer */}
+          <div className="mt-3 p-0">
+            <Footer />
+          </div>
+          
         </main>
 
       </div>
 
-      {/* Footer */}
-      <Footer />
+      
 
     </div>
   );
