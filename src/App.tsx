@@ -1,10 +1,9 @@
-import { useTodos } from "./features/todos/hooks/useTodos";
-import { TodoList } from "./features/todos/components/TodoList";
-import { TodoForm } from "./features/todos/components/TodoForm";
-import { TodoStats } from "./features/todos/components/TodoStats";
-import { TodoFilter } from "./features/todos/components/TodoFilter";
-import { TodoSearch } from "./features/todos/components/TodoSearch";
 
+import { useEffect, useState } from "react";
+
+import { useTodos } from "./features/todos/hooks/useTodos";
+import { Dashboard } from "./pages/Dashboard";
+import { DashboardLayout } from "./components/layout/DashboardLayout";
 
 export default function App() {
   const {
@@ -24,50 +23,45 @@ export default function App() {
     setSearch,
   } = useTodos();
 
-  return (
-    <main className="min-h-screen bg-slate-100 px-4 py-16" >
-      <section className="mx-auto max-w-xl bg-white rounded-3xl shadow-lg p-6 sm:p-8 ">
-        <h1 className="text-3xl font-bold text-green-600 ">Todos-List</h1>
-        <p className=" mt-6 mb-6 text-slate-800">Organize your day, One at a time.</p>
-        <TodoForm
-          task={task}
-          onTaskChange={setTask}
-          onAdd={addTodo}
-        />
-        <div className="  flex justify-between ">
-          <TodoFilter
-            filter={filter}
-            onFilterChange={setFilter}
+  const [theme, setTheme] = useState<"light" | "dark">("light");
+  const [activePage, setActivePage] = useState("dashboard");
 
-          />
-          <TodoSearch
-            search={search}
-            onSearchChange={setSearch}
-          />
-        </div>
-        <TodoList
-          todos={filteredTodos}
-          onToggle={toggleChecked}
-          onDelete={removeTodo}
-          onEdit={editTodo}
-        />
-        {filteredTodos.length === 0 && (
-          <p className="mt-6 text-center text-slate-400">
-            {todos.length === 0
-              ? "No task added yet. Create your first task."
-              : filter === "active"
-                ? "Active tasks not found."
-                : filter === "completed"
-                  ? "Completed tasks not found."
-                  : "Task not match."
-            }
-          </p>
-        )}
-        <TodoStats
-          total={lenTodo}
-          completed={completedCount}
-        />
-      </section>
-    </main>
-  )
+  useEffect(() => {
+    document.documentElement.classList.toggle(
+      "dark",
+      theme === "dark"
+    );
+  }, [theme]);
+
+  function handleThemeToggle() {
+    setTheme((prevTheme) =>
+      prevTheme === "light" ? "dark" : "light"
+    );
+  }
+
+  return (
+    <DashboardLayout
+      theme={theme}
+      onThemeToggle={handleThemeToggle}
+      activePage={activePage}
+      onNavigate={setActivePage}
+    >
+      <Dashboard
+        task={task}
+        setTask={setTask}
+        todos={todos}
+        filteredTodos={filteredTodos}
+        addTodo={addTodo}
+        toggleChecked={toggleChecked}
+        removeTodo={removeTodo}
+        editTodo={editTodo}
+        lenTodo={lenTodo}
+        completedCount={completedCount}
+        filter={filter}
+        setFilter={setFilter}
+        search={search}
+        setSearch={setSearch}
+      />
+    </DashboardLayout>
+  );
 }
