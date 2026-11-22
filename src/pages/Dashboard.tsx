@@ -48,59 +48,67 @@ export function Dashboard({
       : Math.round((completedCount / lenTodo) * 100);
 
   return (
-    <div className="mx-auto w-full max-w-7xl space-y-8">
+    <div className="mx-auto min-h-full w-full max-w-7xl space-y-6">
 
       {/* Welcome Section */}
       <section>
-        <h1 className="text-2xl font-bold text-slate-900 dark:text-white">
+        <h1 className="text-2xl font-bold text-green-800 dark:text-white sm:text-2xl">
           Welcome back! 👋
         </h1>
 
-        <p className="mt-2 text-sm text-slate-500 dark:text-slate-400">
+        <p className="mt-2 text-sm text-slate-800 dark:text-slate-400">
           Here's what's happening with your tasks today.
         </p>
       </section>
 
       {/* Overview Section */}
       <section>
-        <h2 className="mb-4 text-lg font-semibold text-slate-900 dark:text-white">
+        <h2 className="mb-4 text-xl font-bold text-black-900 dark:text-white">
           Overview
         </h2>
 
-        <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 xl:grid-cols-4">
+        <div className="grid grid-cols-2 gap-3 sm:grid-cols-2 sm:gap-4 xl:grid-cols-4">
 
-          <div className="rounded-xl border border-slate-200 bg-white p-5 dark:border-slate-700 dark:bg-slate-900">
-            <p className="text-sm text-slate-500 dark:text-slate-400">
+          {/* Total Tasks */}
+          <div className=" flex flex-col  items-center justify-center rounded-xl border border-black-600 bg-white p-3 dark:border-slate-700 dark:bg-slate-900 sm:p-5">
+            <p className="text-xl text-slate-900 dark:text-slate-400 ">
               Total Tasks
             </p>
-            <p className="mt-3 text-3xl font-bold text-slate-900 dark:text-white">
+
+            <p className="mt-2 text-2xl font-bold text-slate-900 dark:text-white sm:mt-3 sm:text-3xl">
               {lenTodo}
             </p>
           </div>
 
-          <div className="rounded-xl border border-slate-200 bg-white p-5 dark:border-slate-700 dark:bg-slate-900">
-            <p className="text-sm text-slate-500 dark:text-slate-400">
+          {/* Completed */}
+          <div className="flex flex-col  items-center justify-center rounded-xl border border-green-600 bg-white p-3 dark:border-slate-700 dark:bg-slate-900 sm:p-5">
+            <p className="text-xl text-green-600 dark:text-slate-400 ">
               Completed
             </p>
-            <p className="mt-3 text-3xl font-bold text-green-600">
+
+            <p className="mt-2 text-2xl font-bold text-green-600 sm:mt-3 sm:text-3xl">
               {completedCount}
             </p>
           </div>
 
-          <div className="rounded-xl border border-slate-200 bg-white p-5 dark:border-slate-700 dark:bg-slate-900">
-            <p className="text-sm text-slate-500 dark:text-slate-400">
+          {/* Pending */}
+          <div className="flex flex-col  items-center justify-center rounded-xl border border-orange-600 bg-white p-3 dark:border-slate-700 dark:bg-slate-900 sm:p-5">
+            <p className="text-xl text-orange-500 dark:text-slate-400 ">
               Pending
             </p>
-            <p className="mt-3 text-3xl font-bold text-orange-500">
+
+            <p className="mt-2 text-2xl font-bold text-orange-500 sm:mt-3 sm:text-3xl">
               {pendingCount}
             </p>
           </div>
 
-          <div className="rounded-xl border border-slate-200 bg-white p-5 dark:border-slate-700 dark:bg-slate-900">
-            <p className="text-sm text-slate-500 dark:text-slate-400">
+          {/* Progress */}
+          <div className="flex flex-col  items-center justify-center rounded-xl border border-blue-600 bg-white p-3 dark:border-slate-700 dark:bg-slate-900 sm:p-5">
+            <p className="text-xl text-indigo-600 dark:text-slate-400 ">
               Progress
             </p>
-            <p className="mt-3 text-3xl font-bold text-indigo-600">
+
+            <p className="mt-2 text-2xl font-bold text-indigo-600 sm:mt-3 sm:text-3xl">
               {progress}%
             </p>
           </div>
@@ -109,9 +117,10 @@ export function Dashboard({
       </section>
 
       {/* Task Management Section */}
-      <section className="rounded-xl border border-slate-200 bg-white p-5 dark:border-slate-700 dark:bg-slate-900">
+      <section className="rounded-xl border border-green-600 bg-white p-3 dark:border-slate-700 dark:bg-slate-900 sm:p-5">
 
-        <div className="mb-6">
+        {/* Task Heading */}
+        <div className="mb-4 sm:mb-6">
           <h2 className="text-lg font-semibold text-slate-900 dark:text-white">
             My Tasks
           </h2>
@@ -122,14 +131,16 @@ export function Dashboard({
         </div>
 
         {/* Add Todo */}
-        <TodoForm
-          task={task}
-          onTaskChange={setTask}
-          onAdd={addTodo}
-        />
+        <div>
+          <TodoForm
+            task={task}
+            onTaskChange={setTask}
+            onAdd={addTodo}
+          />
+        </div>
 
         {/* Search and Filter */}
-        <div className="mt-6 flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
+        <div className="mt-4 flex flex-col gap-3 sm:mt-6 sm:flex-row sm:items-center sm:justify-between">
 
           <TodoFilter
             filter={filter}
@@ -144,29 +155,33 @@ export function Dashboard({
         </div>
 
         {/* Todo List */}
-        <TodoList
-          todos={filteredTodos}
-          onToggle={toggleChecked}
-          onDelete={removeTodo}
-          onEdit={editTodo}
-        />
+        <div className="mt-4 pr-1 sm:mt-6">
 
-        {/* Empty State */}
-        {filteredTodos.length === 0 && (
-          <p className="mt-6 text-center text-sm text-slate-400">
-            {todos.length === 0
-              ? "No task added yet. Create your first task."
-              : search.trim() !== ""
-                ? "No matching tasks found."
-                : filter === "active"
-                  ? "Active tasks not found."
-                  : "Completed tasks not found."
-            }
-          </p>
-        )}
+          <TodoList
+            todos={filteredTodos}
+            onToggle={toggleChecked}
+            onDelete={removeTodo}
+            onEdit={editTodo}
+          />
+
+          {/* Empty State */}
+          {filteredTodos.length === 0 && (
+            <p className="mt-6 text-center text-sm text-slate-400">
+              {todos.length === 0
+                ? "No task added yet. Create your first task."
+                : search.trim() !== ""
+                  ? "No matching tasks found."
+                  : filter === "active"
+                    ? "Active tasks not found."
+                    : "Completed tasks not found."
+              }
+            </p>
+          )}
+
+        </div>
 
         {/* Todo Stats */}
-        <div className="mt-6 border-t border-slate-200 pt-4 dark:border-slate-700">
+        <div className="mt-4 border-t border-slate-200 pt-4 dark:border-slate-700">
           <TodoStats
             total={lenTodo}
             completed={completedCount}
@@ -174,6 +189,7 @@ export function Dashboard({
         </div>
 
       </section>
+
     </div>
   );
 }
