@@ -33,7 +33,7 @@ export function Sidebar({
       {/* Workspace */}
       <div className="mb-6 flex items-center justify-between">
         <p
-          className={`px-3 text-xs font-semibold uppercase tracking-wider text-slate-400 ${
+          className={`px-3 text-xs font-semibold uppercase tracking-wider text-slate-600 ${
             collapsed ? "md:hidden" : ""
           }`}
         >
