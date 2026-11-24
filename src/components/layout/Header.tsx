@@ -13,7 +13,7 @@ export function Header({
   onMobileMenuToggle,
 }: HeaderProps) {
   return (
-    <header className="relative z-50 flex h-16 shrink-0 items-center justify-between border-b border-slate-200 bg-white px-3 dark:border-slate-700 dark:bg-slate-900 sm:px-6">
+    <header className="relative z-50 flex h-16 shrink-0 items-center justify-between border-b border-green-600 bg-white px-3 dark:border-slate-700 dark:bg-slate-900 sm:px-6">
 
       {/* Left Side */}
       <div className="flex min-w-0 items-center gap-2 sm:gap-3">
@@ -23,7 +23,7 @@ export function Header({
           type="button"
           onClick={onMobileMenuToggle}
           aria-label="Open sidebar"
-          className="rounded-lg p-2 text-slate-600 hover:bg-slate-100 dark:text-slate-300 dark:hover:bg-slate-800 md:hidden"
+          className="rounded-lg p-2 text-slate-600 hover:bg-slate-200 dark:text-slate-300 dark:hover:bg-slate-800 md:hidden"
         >
           ☰
         </button>
@@ -33,22 +33,22 @@ export function Header({
           type="button"
           onClick={onSidebarToggle}
           aria-label="Toggle sidebar"
-          className="hidden rounded-lg p-2 text-slate-600 hover:bg-slate-100 dark:text-slate-300 dark:hover:bg-slate-800 md:block"
+          className="hidden rounded-lg p-2 text-slate-600 hover:bg-slate-200 dark:text-slate-300 dark:hover:bg-slate-800 md:block"
         >
           ☰
         </button>
 
         {/* Logo */}
         <div className="flex shrink-0 items-center gap-2 sm:gap-3">
-          <div className="flex size-9 items-center justify-center rounded-xl bg-indigo-600 text-lg font-bold text-white sm:size-10 sm:text-xl">
+          <div className="flex size-9 items-center justify-center rounded-xl bg-green-600 text-lg font-bold text-white sm:size-10 sm:text-xl">
             T
           </div>
 
           <div>
-            <h1 className="text-base font-bold text-slate-900 dark:text-white sm:text-lg">
+            <h1 className="text-base font-bold text-green-600 dark:text-green sm:text-lg">
               Todo Pro
             </h1>
-            <p className="hidden text-xs text-slate-500 dark:text-slate-400 sm:block">
+            <p className="hidden text-xs text-slate-700 dark:text-slate-400 sm:block">
               Task Management
             </p>
           </div>
@@ -59,8 +59,8 @@ export function Header({
       <div className="flex shrink-0 items-center gap-1 sm:gap-4">
 
         {/* Search */}
-        <div className="hidden items-center gap-2 rounded-lg border border-slate-200 px-3 py-2 md:flex dark:border-slate-700">
-          <span className="text-slate-400">⌕</span>
+        <div className="hidden items-center gap-2 rounded-lg border border-slate-400 px-3 py-1 md:flex dark:border-slate-700">
+          <span className=" text-lg font-xl text-slate-800">⌕</span>
 
           <input
             type="text"
@@ -84,9 +84,9 @@ export function Header({
           type="button"
           onClick={onThemeToggle}
           aria-label="Toggle theme"
-          className="rounded-lg p-2 text-slate-600 hover:bg-slate-100 dark:text-slate-300 dark:hover:bg-slate-800"
+          className="text-xl rounded-lg p-1 text-slate-600 hover:bg-slate-500 dark:text-slate-300 dark:hover:bg-slate-800"
         >
-          {theme === "light" ? "🌙" : "☀️"}
+          {theme === "light" ? "🌙" : "🔆"}
         </button>
 
         {/* Profile */}
@@ -94,7 +94,7 @@ export function Header({
           type="button"
           className="flex items-center gap-2 rounded-lg p-1 hover:bg-slate-100 dark:hover:bg-slate-800"
         >
-          <div className="flex size-9 items-center justify-center rounded-full bg-indigo-100 font-semibold text-indigo-700 dark:bg-indigo-500/20 dark:text-indigo-300">
+          <div className="flex size-9 items-center justify-center rounded-full bg-green-100 font-bold text-green-700 dark:bg-green-500/20 dark:text-green-300">
             U
           </div>
 
