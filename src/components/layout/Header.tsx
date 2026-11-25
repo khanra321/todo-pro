@@ -4,6 +4,8 @@ type HeaderProps = {
   onThemeToggle: () => void;
   onSidebarToggle: () => void;
   onMobileMenuToggle: () => void;
+  search: string;
+  onSearchChange: (value: string) => void;
 };
 
 export function Header({
@@ -11,6 +13,8 @@ export function Header({
   onThemeToggle,
   onSidebarToggle,
   onMobileMenuToggle,
+  search,
+  onSearchChange,
 }: HeaderProps) {
   return (
     <header className="relative z-50 flex h-16 shrink-0 items-center justify-between border-b border-green-600 bg-white px-3 dark:border-slate-700 dark:bg-slate-900 sm:px-6">
@@ -64,6 +68,8 @@ export function Header({
 
           <input
             type="text"
+            value={search}
+            onChange = {(e) => onSearchChange(e.target.value)}
             placeholder="Search tasks..."
             className="w-44 bg-transparent text-sm text-slate-700 outline-none placeholder:text-slate-400 dark:text-white"
           />

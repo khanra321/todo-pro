@@ -12,6 +12,8 @@ type DashboardLayoutProps = {
   onThemeToggle: () => void;
   activePage: string;
   onNavigate: (page: string) => void;
+  search :string;
+  onSearchChange: (value: string) => void;
 };
 
 export function DashboardLayout({
@@ -20,6 +22,8 @@ export function DashboardLayout({
   onThemeToggle,
   activePage,
   onNavigate,
+  search,
+  onSearchChange,
 }: DashboardLayoutProps) {
   const [sidebarCollapsed, setSidebarCollapsed] = useState(false);
   const [mobileSidebarOpen, setMobileSidebarOpen] = useState(false);
@@ -37,6 +41,8 @@ export function DashboardLayout({
         onMobileMenuToggle={() =>
           setMobileSidebarOpen((prev) => !prev)
         }
+        search = {search}
+        onSearchChange={onSearchChange}
       />
 
       {/* Main Layout */}
