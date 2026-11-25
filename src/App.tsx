@@ -4,7 +4,7 @@ import { useEffect, useState } from "react";
 import { useTodos } from "./features/todos/hooks/useTodos";
 import { Dashboard } from "./pages/Dashboard";
 import { DashboardLayout } from "./components/layout/DashboardLayout";
-import { Search } from "lucide-react";
+
 
 export default function App() {
   const {
