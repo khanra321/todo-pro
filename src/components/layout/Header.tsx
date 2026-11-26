@@ -1,4 +1,4 @@
-
+import { useState } from "react";
 type HeaderProps = {
   theme: "light" | "dark";
   onThemeToggle: () => void;
@@ -16,6 +16,7 @@ export function Header({
   search,
   onSearchChange,
 }: HeaderProps) {
+  const [notificationOpen, setNotificationOpen] = useState(false);
   return (
     <header className="relative z-50 flex h-16 shrink-0 items-center justify-between border-b border-green-600 bg-white px-3 dark:border-slate-700 dark:bg-slate-900 sm:px-6">
 
@@ -76,14 +77,47 @@ export function Header({
         </div>
 
         {/* Notification */}
-        <button
-          type="button"
-          aria-label="Notifications"
-          className="relative rounded-lg p-2 text-slate-600 hover:bg-slate-100 dark:text-slate-300 dark:hover:bg-slate-800"
-        >
-          <span className="text-xl">♧</span>
-          <span className="absolute right-1 top-1 size-2 rounded-full bg-red-500" />
-        </button>
+        <div className="relative">
+          <button
+            type="button"
+            onClick={() => setNotificationOpen((prev) => !prev)}
+            aria-label="Notifications"
+            aria-expanded={notificationOpen}
+            className="relative rounded-lg p-2 text-slate-600 hover:bg-slate-100 dark:text-slate-300 dark:hover:bg-slate-800"
+          >
+            <span className="text-xl">♧</span>
+
+            <span className="absolute right-1 top-1 size-2 rounded-full bg-red-500" />
+          </button>
+
+          {notificationOpen && (
+            <div className="absolute right-0 top-12 z-50 w-72 rounded-xl border border-slate-200 bg-white p-4 shadow-xl dark:border-slate-700 dark:bg-slate-900">
+              <div className="flex items-center justify-between">
+                <h3 className="font-semibold text-slate-800 dark:text-white">
+                  Notifications
+                </h3>
+
+                <button
+                  type="button"
+                  onClick={() => setNotificationOpen(false)}
+                  className="text-slate-500 hover:text-slate-800 dark:hover:text-white"
+                >
+                  ✕
+                </button>
+              </div>
+
+              <div className="mt-4 border-t border-slate-200 pt-3 dark:border-slate-700">
+                <p className="text-sm text-slate-600 dark:text-slate-300">
+                  Welcome to Todo Pro!
+                </p>
+
+                <p className="mt-1 text-xs text-slate-400">
+                  Your workspace is ready.
+                </p>
+              </div>
+            </div>
+          )}
+        </div>
 
         {/* Theme Toggle */}
         <button
